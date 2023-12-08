@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styleIndex.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Roboto:ital@1&display=swap" rel="stylesheet">
+
+    <title>Записи</title>
+</head>
+<body>
+    <div class="backgr">
+        <table>
+            <tr>
+              <th>Услуга</th>
+              <th>Цена</th>
+              <th>Время</th>
+            </tr>
+            <% for(const elem of host) {%>
+                <tr>
+                    <td><%=elem.name%></td>
+                    <td><%=elem.price%> руб</td>
+                    <td><%=elem.time%> мин</td>
+                </tr>
+            <%} %>
+        </table>
+        <form action="yslugi">
+            <button class = "btn-zapis">Записаться сейчас</button>
+        </form>  
+    </div>
+</body>
+</html>

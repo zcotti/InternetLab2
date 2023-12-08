@@ -1,0 +1,95 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.backgr{
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+
+    background-image: url(/Fons/dav.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+table {
+    border-spacing: 0 10px;
+    font-family: 'Comfortaa', sans-serif;
+    font-weight: bold;
+}
+    
+th {
+    padding: 10px 20px;
+    
+    background: #56433D;
+    color: #F9C941;
+    
+    border-right: 2px solid; 
+    font-size: 0.9em;
+}
+
+th:first-child {
+    text-align: left;
+}
+
+th:last-child {
+    border-right: none;
+}
+
+td {
+    vertical-align: middle;
+    
+    padding: 10px;    
+
+    color: #ffffffff;
+
+    font-size: 14px;
+    
+    text-align: center;
+    
+    border-top: 2px solid #56433D;
+    border-left: 2px solid #56433D;
+    border-bottom: 2px solid #56433D;
+   
+}
+
+td:first-child {
+    border-left: 2px solid #56433D;
+    border-right: none;
+}
+
+td:nth-child(1){
+    text-align: left;
+    padding: auto;
+}
+
+td:nth-child(3){
+    border-right: 2px solid #56433D;
+}
+
+
+.btn-zapis{
+    background-color: rgb(38, 39, 38);
+}
+
+.btn-zapis:hover{
+    background-color: #777777;
+} 
+
+button {
+    width: 100%;
+    padding: 10px;
+    
+    color: #fff;
+    
+    border: none;
+    border-radius: 5px;
+    font-family: 'Comfortaa', sans-serif;
+
+    cursor: pointer;
+}

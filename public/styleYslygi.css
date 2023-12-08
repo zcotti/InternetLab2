@@ -1,0 +1,126 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.textik{
+    font-family: 'Comfortaa';
+    font-size: 30px;
+    color: black;
+
+    padding-bottom: 15px;
+}
+
+body{
+    height: 100vh;
+    
+    background-image: url(Fons/asda.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.for-form{
+    padding-left: 15%;
+    padding-top: 15%;
+}
+
+
+.for_registr{
+    width: 400px;      
+}
+
+
+.login-form {
+    height: 45%;
+    
+    padding: 10px;
+
+    border: 2px solid #7e7d7d;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+    text-align: center;
+}
+
+input{
+    width: 80%;
+   
+    margin-bottom: 10px;
+    padding: 10px;
+
+    font-family: 'Comfortaa';
+
+    box-sizing: border-box;
+    border: 2px solid #000000;
+    border-radius: 10px;
+}
+
+
+.zapis {
+    width: 100%;
+    padding: 10px;
+    
+    background-color: rgb(0, 0, 0);
+    
+    color: #fff;
+    
+    border: none;
+    border-radius: 5px;
+    
+    font-family: 'Comfortaa';
+    cursor: pointer;
+}
+
+.zapis:hover {
+    background-color: rgb(77, 76, 75);
+}
+
+#serv-select{
+    width: 80%;
+    
+    padding: 10px;
+    margin-bottom: 10px;
+
+    background-color: rgb(255, 252, 252);
+    
+    color: #000000;
+    
+    border-radius: 5px;
+    
+    font-family: 'Comfortaa';
+    cursor: pointer;
+}
+
+.btn-time {
+    display: flex; 
+    flex-wrap: wrap;
+    align-items: center; 
+    justify-content: center;
+    gap: 10px;
+
+    width: 100%;
+}
+
+.btnfortime {
+    flex: 0 0 60px; 
+    
+    margin-bottom: 10px;
+
+    color: #000;
+    background-color: #ffffff;
+    
+    padding: 8px;
+
+    border: 1px solid black;
+    border-radius: 5px;
+    
+    font-size: 14px;
+    font-family: 'Comfortaa';
+    cursor: pointer;
+}
+
+
+.btnfortime:hover {
+    background-color: lightgray; 
+}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/styleYslygi.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Roboto:ital@1&display=swap" rel="stylesheet">
+
+    <title>Document</title>
+</head>
+<body>
+    <div class="for-form">
+        <div class="for_registr">
+            <div class="login-form">
+                <p class="textik">
+                    На сколько вы хотите записаться?
+                </p>
+                <input type="tel" id="phoneNumber" placeholder="Телефон">
+                <input type="text" id= "name"placeholder="Имя">
+                
+                <select name="service" id="serv-select">
+                    <option value="ysl" class="select-Ser">Выберете услугу</option>
+                    <% for(const elem of host) { %>
+                        <% let i = 0 %>
+                        <option value="<%=elem.name%>" class="yslygi"><%=elem.name%></option>
+
+                    <%} %>
+                </select>
+
+                <div class="btn-time">
+                    <% let time = ["9:00", "9:30", "10:00", "10:30","11:00","11:30", "12:00","12:30","13:00","13:30", "14:00","14:30","15:00","15:30","16:00",  "16:30", "17:00", "17:30", "18:00"];  %>
+
+                    <% for(let i = 0; i < time.length; i++) {%>
+
+                        <button class="btnfortime"><%=time[i]%></button>
+
+                    <% } %>
+                </div>
+                <button class="zapis" id="zapisatsya">Записаться</button>
+                <script src="/client.js"> </script>
+            </div> 
+        </div>
+    </div>
+</body>
+</html>
