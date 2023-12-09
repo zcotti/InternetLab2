@@ -38,44 +38,42 @@ app.get('/yslugi', async function (request, response) {
     }
 });
 
-
 const timeServices = {
-    'Маникюр': 50,
-    'Выщипывание бровей': 30,
-    'Стрижка Мужская': 45,
-    'Стрижка Женская': 45,
-    'Стрижка Детская': 45
+    'Маникюр': 55,
+    'Выщипывание бровей': 35,
+    'Стрижка Мужская': 35,
+    'Стрижка Женская': 55,
+    'Стрижка Детская': 35,
+    'Укладка волос': 55,
+    'Уход за волосами': 35,
+    'Депиляция воском': 75,
+    'Педикюр': 115,
+    'Тонирование волос': 35,
+    'Бритье мужской бороды': 55,
+    'Удаление гель-лака': 35,
+    'Наращивание ногтей': 135,
+    'Мелирование волос': 115
 }
-
-// app.get('/yslugi', async function (requestm, response){
-//     const sqlQuer = 'SELECT time FROM services';
-
-//     try{
-//         const result = await pool.query(sqlQuer);
-//         const timeJson = result.rows;
-//         response.json({timeJson});
-//         console.log(response.json({timeJson}));
-
-//     } catch (error) {
-//         console.log(error);
-//     }
-// });
 
 app.post('/submitServices', async (req, res) => {
 
     const {curname, phone, service, time} = req.body;
 
-    const checkResult = await pool.query('SELECT * FROM busyservices WHERE starttime = $1', [time]);
+    const checkResult = await pool.query('SELECT * FROM serviceentries WHERE starttime = $1', [time]);
 
-    let endtime = timeServices[service];
+    let timik = timeServices[service];
+    const endtime =  Number(time) + Number(timik);
 
-    const ttt =  Number(time) + Number(endtime);
+    const priceQuery = await pool.query('SELECT price FROM services WHERE name = $1', [service]);
+    const prices = priceQuery.rows;
+    const price = prices[0].price;
+
     if (checkResult.rowCount > 0) {
         res.status(409).send('Время уже занято'); 
 
     } else {
         res.status(200).send('Успешно добавлено');
-        await pool.query('INSERT INTO busyservices (name, nameservices, starttime, endtime) VALUES ($1, $2, $3, $4)', [curname, service, time, ttt], (error) => {
+        await pool.query('INSERT INTO serviceentries (nameuser, phone, nameservices, price, starttime, endtime) VALUES ($1, $2, $3, $4, $5, $6)', [curname, phone, service, price , time, endtime], (error) => {
         
         if (error) {
             throw error;
@@ -85,8 +83,8 @@ app.post('/submitServices', async (req, res) => {
     }
 });
 
-app.get('/data', (req, res) => {
-    pool.query('SELECT starttime, endtime FROM busyservices', (error, result) => {
+app.get('/checkTime', (req, res) => {
+    pool.query('SELECT starttime, endtime FROM serviceentries', (error, result) => {
       if (error) {
         res.status(500).json({ message: 'Error fetching data' });
         console.error('Error executing query:', error);
@@ -119,7 +117,7 @@ app.get('/data', (req, res) => {
 // });
 
 app.get('/', function (request, response) {
-    response.render('authorization');
+    response.render('main');
 });
 
 app.listen(3000);

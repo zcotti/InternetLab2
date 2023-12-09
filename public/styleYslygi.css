@@ -120,7 +120,7 @@ input{
     cursor: pointer;
 }
 
-
 .btnfortime:hover {
-    background-color: lightgray; 
+    background-color:#777777 !important;
+    color: black !important;
 }
