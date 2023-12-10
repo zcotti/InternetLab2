@@ -1,5 +1,5 @@
 let selectedTime = ''; 
-let totalMinutes = 0;
+let startTime = 0;
 
 const timeService = {
   'Маникюр': 55,
@@ -43,9 +43,9 @@ btn.addEventListener("click", async () => {
   }
   
   const duration = timeService[selectedValue];
-  const totalEnd = totalMinutes + duration;
+  const totalEnd = startTime + duration;
 
-  if(!(await checkAvailability(totalMinutes, totalEnd))){
+  if(!(await checkAvailability(startTime, totalEnd))){
     alert('Невозможно записаться на это время, выберите другое');
     return;
   }
@@ -68,8 +68,9 @@ btn.addEventListener("click", async () => {
 
     if (response.status === 200) { 
       alert('Запись произведена успешно!');
-      
-      fetchDataAndHandleButtonsColor(); 
+
+      fetchDataAndHandleButtonsColor();
+
     }
     else if (response.status === 409) 
       alert('Выбранное время уже занято');
@@ -90,16 +91,14 @@ async function checkAvailability(startmin, endmin) {
       const slotEndTime = data[i].endtime;
 
       if (startmin < slotEndTime && endmin > slotStartTime) {
-        console.log('Пересечение');
         return false; // Есть пересечение
       }
     }
-    console.log('NO');
     return true; // Нет пересечений
 
   } catch (error) {
     console.error('Error:', error);
-    return false; // В случае ошибки считаем, что есть пересечение
+    return false; 
   }
 }
 
@@ -149,4 +148,6 @@ async function fetchDataAndHandleButtonsColor() {
   }
 }
 
-fetchDataAndHandleButtonsColor();
+window.addEventListener('load', () => {
+  fetchDataAndHandleButtonsColor(); 
+});

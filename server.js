@@ -55,6 +55,7 @@ const timeServices = {
     'Мелирование волос': 115
 }
 
+
 app.post('/submitServices', async (req, res) => {
 
     const {curname, phone, service, time} = req.body;
@@ -73,7 +74,8 @@ app.post('/submitServices', async (req, res) => {
 
     } else {
         res.status(200).send('Успешно добавлено');
-        await pool.query('INSERT INTO serviceentries (nameuser, phone, nameservices, price, starttime, endtime) VALUES ($1, $2, $3, $4, $5, $6)', [curname, phone, service, price , time, endtime], (error) => {
+        await pool.query('INSERT INTO serviceentries (nameuser, phone, nameservices, price, starttime, endtime) VALUES ($1, $2, $3, $4, $5, $6)', 
+        [curname, phone, service, price , time, endtime], (error) => {
         
         if (error) {
             throw error;
@@ -89,32 +91,10 @@ app.get('/checkTime', (req, res) => {
         res.status(500).json({ message: 'Error fetching data' });
         console.error('Error executing query:', error);
       } else {
-        res.send(JSON.stringify(result.rows)); // Отправка данных клиенту в формате JSON
+        res.send(JSON.stringify(result.rows)); 
       }
     });
 });
-
-
-// app.post('/submitServices', async (req, res) => {
-
-//     const {curname, phone, service, time} = req.body;
-    
-//     const checkResult = await pool.query('SELECT * FROM test WHERE time = $1', [time]);
-
-//     if (checkResult.rowCount > 0) {
-//         res.status(409).send('Время уже занято'); 
-
-//     } else {
-//         res.status(200).send('Успешно добавлено');
-//         await pool.query('INSERT INTO test (name, phone, service, time) VALUES ($1, $2, $3, $4)', [curname, phone, service, time], (error) => {
-        
-//         if (error) {
-//             throw error;
-//         }
-//         console.log('Data inserted');
-//         });
-//     }
-// });
 
 app.get('/', function (request, response) {
     response.render('main');
